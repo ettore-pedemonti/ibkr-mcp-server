@@ -14,7 +14,7 @@ from typing import Any, Awaitable, Callable
 ROOT = Path(__file__).resolve().parent
 SERVER_PATH = ROOT / "server.py"
 CUSTOM_TOOL_COUNT = 38
-HERMES_TOOL_COUNT = 42
+TOTAL_TOOL_COUNT = 42
 MUTATING_TOOLS = [
     "place_order",
     "cancel_order",
@@ -301,7 +301,7 @@ async def _main() -> int:
         "server_path": str(SERVER_PATH),
         "ib_client_id": os.environ.get("IB_CLIENT_ID"),
         "custom_tools_documented": CUSTOM_TOOL_COUNT,
-        "hermes_total_tools": HERMES_TOOL_COUNT,
+        "total_tools": TOTAL_TOOL_COUNT,
         "read_only_tests_run": len(results),
         "mutating_tools_skipped": MUTATING_TOOLS,
         "passed": len(results) - len(failed),

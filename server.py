@@ -1,4 +1,4 @@
-"""Hermes IBKR MCP Server — ib_async based, propagates errors honestly."""
+"""IBKR MCP Server — ib_async based, propagates errors honestly."""
 import os
 import sys
 import copy
@@ -1368,8 +1368,8 @@ async def _get_reference_price_for_precheck(
 
     return None, None, _find_market_data_permission_error(recent_errors)
 
-ORDER_PRICE_TOLERANCE_PCT = float(os.environ.get("HERMES_ORDER_PRICE_TOLERANCE_PCT", "2.0"))
-MARKET_DATA_TYPE = int(os.environ.get("HERMES_MARKET_DATA_TYPE", "3"))
+ORDER_PRICE_TOLERANCE_PCT = float(os.environ.get("IBKR_ORDER_PRICE_TOLERANCE_PCT", "2.0"))
+MARKET_DATA_TYPE = int(os.environ.get("IBKR_MARKET_DATA_TYPE", "3"))
 
 
 async def _precheck_live_price(ib, contract, side, order_type, limit_price):
@@ -1422,7 +1422,7 @@ async def get_ib() -> IB:
     _ib.reqMarketDataType(MARKET_DATA_TYPE)
     return _ib
 
-mcp = FastMCP("hermes-ibkr")
+mcp = FastMCP("ibkr-mcp-server")
 
 @mcp.tool()
 async def place_order(
